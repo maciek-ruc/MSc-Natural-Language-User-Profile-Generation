@@ -6,29 +6,212 @@ Scope covered:
 
 ## Prompt table
 
-| # | Prompt name | Where used | Full prompt (template) | Brief overview | Motivation |
-|---|---|---|---|---|---|
-| 1 | Generation system prompt (`DEFAULT_SYSTEM_PROMPT`) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L39-L41) | `You write concise first-person user interest profiles for recommendation systems. Return plain text only.` | Sets style and output constraints globally for profile generation. | Reduces format drift (markdown/lists) and keeps profiles short + consistent for downstream storage/ranking. |
-| 2 | Shared style exemplar (`ONE_SHOT_EXAMPLE`, embedded in multiple user prompts) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L44-L47) | `I am interested in a mix of long-term research themes and newer directions suggested by recent activity. I often work on concrete methods, applications, and evaluation questions that connect these interests. I care about clear problem definitions, practical impact, and how different topics fit together in my overall research profile.` | A one-shot writing style anchor (not content anchor). | Helps model produce fluent first-person profile tone while prompt forbids copying exact phrases. |
-| 3 | Hybrid prompt (default weighted evidence) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L610-L660) | `Create one short first-person profile in English from BOTH publication history and interaction behavior.`<br>`Output only plain text, 3 to 5 sentences.`<br>`Style example:`<br>`{ONE_SHOT_EXAMPLE}`<br>`Do not copy long phrases from the style example; infer concrete topics from evidence.`<br>`Do not mention uncertainty, missing data, or that you are an AI.`<br>`Do not talk about the input format, provided list, or what you can/cannot do.`<br>`Use only the evidence below.`<br>`{OPTIONAL: When signals conflict, apply this priority rule: {source_priority_instruction}}`<br><br>`Evidence from interactions:`<br>`Use article-level engagement evidence first (saved > clicked).`<br>`top_categories={summary.top_categories}`<br>`top_topics={summary.top_topics}`<br>`Top engaged interaction articles:`<br>`{for each item i:}`<br>`{i}. saved={has_saved} | clicked={has_clicked} | event_time={event_time}`<br>`   title={title}`<br>`   abstract={abstract<=350 chars if present}`<br><br>`Evidence from publications:`<br>`{OPTIONAL omission note: (Only top {N} publications are listed; {M} additional publications omitted for brevity.)}`<br>`{for each publication i:}`<br>`{i}. title={title} | year={year} | venue={venue} | citations={citation_count}`<br>`   fields_of_study={fields_of_study if present}`<br>`   abstract={abstract<=400 chars OR [ABSTRACT_MISSING_IN_DB]}` | Main hybrid generation template combining long-term (publications) and recent (interactions) evidence. | Produces profile candidates that can trade-off stability vs recency for offline selection. |
-| 4 | Hybrid prompt: publications-priority variant | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L538-L575) | `User ID: {user_id}`<br>`Create one short first-person profile in English from BOTH publication history and interaction behavior.`<br>`Output only plain text, 3 to 5 sentences.`<br>`Style example:`<br>`{ONE_SHOT_EXAMPLE}`<br>`Do not copy long phrases from the style example; infer concrete topics from evidence.`<br>`Primary objective: the final profile should focus mainly on publication evidence.`<br>`Sentence plan: sentences 1-3 must reflect publication trajectory; sentence 4 may mention interaction recency.`<br>`Do not mention uncertainty, missing data, or that you are an AI.`<br>`Do not talk about the input format, provided list, or what you can/cannot do.`<br><br>`Evidence from publications (PRIMARY):`<br>`{omission note if any}`<br>`{publication entries, abstract<=400}`<br><br>`Evidence from interactions (SECONDARY):`<br>`Use article-level engagement evidence first (saved > clicked).`<br>`top_categories={...}`<br>`top_topics={...}`<br>`Top engaged interaction articles:`<br>`{engaged article entries}` | Structural prompt variant that forces publication-led narrative. | Tests whether publication-first framing improves relevance/coverage for some users. |
-| 5 | Hybrid prompt: interactions-priority variant | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L577-L608) | `User ID: {user_id}`<br>`Create one short first-person profile in English from BOTH publication history and interaction behavior.`<br>`Output only plain text, 3 to 5 sentences.`<br>`Style example:`<br>`{ONE_SHOT_EXAMPLE}`<br>`Do not copy long phrases from the style example; infer concrete topics from evidence.`<br>`Primary objective: the final profile should focus mainly on interaction evidence.`<br>`Sentence plan: sentences 1-3 must reflect interaction behavior; sentence 4 may mention publication background.`<br>`Do not mention uncertainty, missing data, or that you are an AI.`<br>`Do not talk about the input format, provided list, or what you can/cannot do.`<br><br>`Evidence from interactions (PRIMARY):`<br>`Use article-level engagement evidence first (saved > clicked).`<br>`top_categories={...}`<br>`top_topics={...}`<br>`Top engaged interaction articles:`<br>`{engaged article entries}`<br><br>`Evidence from publications (SECONDARY):`<br>`{omission note if any}`<br>`{publication entries, abstract<=400}` | Structural prompt variant that forces interaction-led narrative. | Tests recency-heavy personalization; often better when recent clicks/saves diverge from older pubs. |
-| 6 | Publications-only prompt (available helper path) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L662-L685) | `User ID: {user_id}`<br>`Create a short first-person research interest profile in English.`<br>`Output only plain text, 3 to 5 sentences.`<br>`Style example:`<br>`{ONE_SHOT_EXAMPLE}`<br>`Do not copy long phrases from the style example; infer concrete topics from evidence.`<br>`Do not mention uncertainty, dataset limitations, or that you are an AI.`<br>`Use only the evidence below.`<br><br>`Evidence from publications:`<br>`{omission note if any}`<br>`{publication entries with abstract<=500}` | Legacy/auxiliary single-source prompt from publication metadata only. | Useful fallback/ablation baseline when interaction data is unavailable or for controlled comparisons. |
-| 7 | Interactions-only prompt (available helper path) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L687-L708) | `User ID: {user_id}`<br>`Create a short first-person interest profile in English.`<br>`Output only plain text, 3 to 5 sentences.`<br>`Style example:`<br>`{ONE_SHOT_EXAMPLE}`<br>`Do not copy long phrases from the style example; infer concrete topics from evidence.`<br>`Base the profile only on interaction behavior evidence below.`<br>`Prioritize article-level signals (saved > clicked).`<br>`Do not mention uncertainty, dataset limitations, or that you are an AI.`<br><br>`Evidence from interactions:`<br>`top_categories={...}`<br>`top_topics={...}`<br>`Top engaged interaction articles:`<br>`{engaged article entries}` | Legacy/auxiliary single-source prompt from behavioral evidence only. | Useful for recency-focused baseline and source-isolation experiments. |
-| 8 | Sanity rewrite prompt (post-processing repair) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L263-L271) | `System: You rewrite profiles into concise plain-text first-person style.`<br>`User: Rewrite the following into a first-person user interest profile in English. Return only plain text, exactly 4 sentences, no headings, no lists, no markdown.`<br><br>`Text to rewrite:`<br>`{candidate}` | Triggered when initial output is malformed/generic/clipped. | Repairs low-quality generations without re-running full evidence prompt. |
-| 9 | Quality rewrite prompt (specificity boost) | [generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py#L781-L786) | `System: You write concise first-person user interest profiles for recommendation systems. Return plain text only.`<br>`User: Rewrite this user profile to improve clarity and specificity. Return plain text only, exactly 4 sentences, first-person, no bullets, no headings.`<br><br>`Profile:`<br>`{profile_text}` | Optional second-pass enhancer if quality gate fails. | Increases specificity/coherence before candidate is accepted for judging/ranking. |
-| 10 | Judge system prompt (pointwise and pairwise clients) | [run_temporal_split_experiment.py](hai/scripts/run_temporal_split_experiment.py#L585) and [run_temporal_split_experiment.py](hai/scripts/run_temporal_split_experiment.py#L597) | `You are an impartial evaluator. Return strict JSON only.` | Forces deterministic machine-readable outputs from judge model. | Avoids markdown/prose leakage and parsing failures in experiment pipeline. |
-| 11 | Pointwise judge user prompt | [run_temporal_split_experiment.py](hai/scripts/run_temporal_split_experiment.py#L272-L314) | `Evaluate profile quality against held-out future interactions.`<br><br>`User ID: {user_id}`<br>`Variant: {variant_id}`<br>`Profile:`<br>`{profile_text}`<br><br>`Held-out interactions (title + abstract):`<br>`{for each holdout i:}`<br>`{i}. title={title}`<br>`   abstract={abstract<=500 chars if present}`<br><br>`Scoring rubric (strict, literature-grounded):`<br>`Follow a rubric-based LLM-as-judge protocol inspired by G-Eval / MT-Bench / PandaLM / Prometheus-style evaluation.`<br>`Use profile-quality dimensions commonly used in IR/recommender and user-model evaluation: relevance, informativeness/specificity, coverage/completeness, and coherence/consistency.`<br>`For each dimension and overall, assign an INTEGER score from 1 to 5 only.`<br>`Level meanings (must use exactly this scale):`<br>`1 = very poor / fails criterion`<br>`2 = weak / major issues`<br>`3 = acceptable / mixed quality`<br>`4 = strong / minor issues`<br>`5 = excellent / fully satisfies criterion`<br><br>`Dimensions:`<br>`- relevance (1-5): alignment with held-out topics/tasks.`<br>`- specificity (1-5): concrete technical detail; non-generic wording.`<br>`- coverage (1-5): captures breadth of important held-out interests.`<br>`- consistency (1-5): grammatical, semantic, and cross-sentence coherence.`<br><br>`Calibration guidance for consistent judging:`<br>`- Score 1-2 when criterion is clearly violated or mostly unsupported by evidence.`<br>`- Score 3 for partial match with noticeable gaps.`<br>`- Score 4 for strong match with minor issues.`<br>`- Score 5 only for clear, specific, and well-supported excellence.`<br><br>`Hard failure rules (must apply):`<br>`1) If the text has malformed/clipped/ungrammatical sentences -> consistency=1 and overall=1 and pass_fail=fail.`<br>`2) If the text is semantically vague or awkward (example style: 'I am interested in knowledge, with a focus on resource.') -> specificity=1 and consistency=1 and overall=1 and pass_fail=fail.`<br>`3) If the text is generic boilerplate and could describe many unrelated users -> specificity<=2 and pass_fail=fail if severe.`<br>`Return strict JSON with keys: relevance,specificity,coverage,consistency,overall,pass_fail,rationale_short. Scores are 1.0-5.0. pass_fail is pass/fail.` | Independent rubric-based scoring for each candidate profile. | Converts qualitative quality into comparable numeric scores + hard-fail signals. |
-| 12 | Pairwise judge user prompt | [run_temporal_split_experiment.py](hai/scripts/run_temporal_split_experiment.py#L316-L351) | `Compare two candidate user profiles against held-out future interactions.`<br><br>`User ID: {user_id}`<br>`Candidate A ({variant_a}):`<br>`{profile_a}`<br><br>`Candidate B ({variant_b}):`<br>`{profile_b}`<br><br>`Held-out interactions (title + abstract):`<br>`{holdout items}`<br><br>`Use a pairwise LLM-as-judge protocol inspired by MT-Bench / Chatbot Arena style comparisons.`<br>`First, evaluate A and B independently against the same rubric in your internal reasoning.`<br>`Then choose the better profile overall using this priority: semantic quality/coherence first, then relevance, then specificity/coverage.`<br>`To reduce position bias, treat A/B labels as arbitrary and base judgment only on content quality and evidence alignment.`<br>`If one profile is awkward or semantically vague, it should lose.`<br>`Return strict JSON with keys: winner,confidence,reason_short where winner in {A,B,tie} and confidence in [0.0,1.0].` | Head-to-head tie-break ranking among passing (or all scored) candidates. | Stabilizes top-k selection when pointwise scores are close by adding comparative signal. |
+| # | Prompt name | Brief overview | Motivation | Full prompt |
+|---|---|---|---|---|
+| 1 | Generation system prompt (`DEFAULT_SYSTEM_PROMPT`) | Sets style and output constraints globally for profile generation. | Reduces format drift and keeps outputs plain-text and consistent. | See Prompt 1 below |
+| 2 | Shared style example (`ONE_SHOT_EXAMPLE`) | One-shot style anchor (not content anchor). | Helps keep the same style. It used to be a little more literal example but weaker models just copied it despite stating it's forbidden. | See Prompt 2 below |
+| 3 | Hybrid prompt (default weighted evidence) | Combines long-term publication signal with recent interaction signal. | By default it takes 30 records from publications and 30 from interaction data, x variable helps sway the proportions (ex. x=0.8 publications included=24 interactions included=6), We use default variant with no weights, one with x=0.8 and one with x=0.2 | See Prompt 3 below |
+| 4 | Hybrid prompt: publications-priority variant | Publication-led framing with interactions as secondary. | Tests if publication being underlined via prompt helps the profile outcome | See Prompt 4 below |
+| 5 | Hybrid prompt: interactions-priority variant | Interaction-led framing with publications as secondary. | Tests recency-heavy personalization. | See Prompt 5 below |
+| 6 | Sanity rewrite prompt | Repair pass for malformed/generic output. | Fixes weak generations without rebuilding full evidence prompt. | See Prompt 6 below |
+| 7 | Quality rewrite prompt | Specificity/clarity improvement pass. | Raises quality before candidate acceptance/ranking. | See Prompt 7 below |
+| 8 | Judge system prompt | Forces strict machine-readable judging output. | Prevents markdown/prose leakage in scoring pipeline. | See Prompt 8 below |
+| 9 | Pointwise judge user prompt | Rubric-based independent scoring of one candidate. | Converts quality to comparable numeric signals. | See Prompt 9 below |
+| 10 | Pairwise judge user prompt | Head-to-head comparison between two candidates. | Stabilizes ranking when pointwise scores are close. | See Prompt 10 below |
+
+## Full prompts
+
+### Prompt 1 — Generation system prompt
+
+```text
+You produce concise first-person user-interest profiles for recommendation systems. Return plain text only.
+```
+
+### Prompt 2 — Shared style example
+
+```text
+I am interested in a mix of long-term research themes and newer directions suggested by recent activity. I often work on concrete methods, applications, and evaluation questions that connect these interests. I care about clear problem definitions, practical impact, and how different topics fit together in my overall research profile.
+```
+
+### Prompt 3 — Hybrid prompt (default weighted evidence)
+
+```text
+Draft one concise first-person profile in English using both publication history and interaction behavior.
+Return plain text only, 3 to 5 sentences.
+Style example:
+{ONE_SHOT_EXAMPLE}
+Do not copy phrases from the style example; infer specific topics from the evidence.
+Do not mention uncertainty, missing data, or AI status.
+Do not reference the prompt, data format, or model limitations.
+Use only the evidence below.
+{OPTIONAL: When signals conflict, apply this priority rule: {source_priority_instruction}}
+
+Evidence from interactions:
+Use article-level engagement evidence first (saved > clicked).
+top_categories={summary.top_categories}
+top_topics={summary.top_topics}
+Top engaged interaction articles:
+{for each item i:}
+{i}. saved={has_saved} | clicked={has_clicked} | event_time={event_time}
+	title={title}
+	abstract={abstract<=350 chars if present}
+
+Evidence from publications:
+{for each publication i:}
+{i}. title={title} | year={year} | venue={venue} | citations={citation_count}
+	fields_of_study={fields_of_study if present}
+	abstract={abstract<=400 chars OR [ABSTRACT_MISSING_IN_DB]}
+```
+
+### Prompt 4 — Hybrid prompt: publications-priority variant
+
+```text
+User ID: {user_id}
+Draft one concise first-person profile in English using both publication history and interaction behavior.
+Return plain text only, 3 to 5 sentences.
+Style example:
+{ONE_SHOT_EXAMPLE}
+Do not copy phrases from the style example; infer specific topics from the evidence.
+Primary objective: the final profile should emphasize publication evidence.
+Sentence plan: sentences 1-3 should reflect publication trajectory; sentence 4 may mention interaction recency.
+Do not mention uncertainty, missing data, or AI status.
+Do not reference the prompt, data format, or model limitations.
+
+Evidence from publications (PRIMARY):
+{publication entries, abstract<=400}
+
+Evidence from interactions (SECONDARY):
+Use article-level engagement evidence first (saved > clicked).
+top_categories={...}
+top_topics={...}
+Top engaged interaction articles:
+{engaged article entries}
+```
+
+### Prompt 5 — Hybrid prompt: interactions-priority variant
+
+```text
+User ID: {user_id}
+Draft one concise first-person profile in English using both publication history and interaction behavior.
+Return plain text only, 3 to 5 sentences.
+Style example:
+{ONE_SHOT_EXAMPLE}
+Do not copy phrases from the style example; infer specific topics from the evidence.
+Primary objective: the final profile should emphasize interaction evidence.
+Sentence plan: sentences 1-3 should reflect interaction behavior; sentence 4 may mention publication background.
+Do not mention uncertainty, missing data, or AI status.
+Do not reference the prompt, data format, or model limitations.
+
+Evidence from interactions (PRIMARY):
+Use article-level engagement evidence first (saved > clicked).
+top_categories={...}
+top_topics={...}
+Top engaged interaction articles:
+{engaged article entries}
+
+Evidence from publications (SECONDARY):
+{publication entries, abstract<=400}
+```
+
+### Prompt 6 — Sanity rewrite prompt
+
+```text
+System: You revise user-interest profiles into concise first-person plain text.
+User: Revise the following text into a first-person user-interest profile in English. Return plain text only, exactly 4 sentences, with no headings, lists, or markdown.
+
+Text to rewrite:
+{candidate}
+```
+
+### Prompt 7 — Quality rewrite prompt
+
+```text
+System: You produce concise first-person user-interest profiles for recommendation systems. Return plain text only.
+User: Revise this user profile to improve clarity and specificity. Return plain text only, exactly 4 first-person sentences, with no bullets or headings.
+
+Profile:
+{profile_text}
+```
+
+### Prompt 8 — Judge system prompt
+
+```text
+You are an impartial critical evaluator. Return strict JSON only.
+```
+
+### Prompt 9 — Pointwise judge user prompt
+
+```text
+Assess profile quality against held-out future interactions.
+
+User ID: {user_id}
+Variant: {variant_id}
+Profile:
+{profile_text}
+
+Held-out interactions (title + abstract):
+{for each holdout i:}
+{i}. title={title}
+	abstract={abstract<=500 chars if present}
+
+Scoring rubric:
+Evaluate the profile using four dimensions: relevance, specificity, coverage, and consistency.
+For each dimension and overall, assign an INTEGER score from 1 to 5 only.
+Level meanings (must use exactly this scale):
+1 = very poor / fails criterion
+2 = weak / major issues
+3 = acceptable / mixed quality
+4 = strong / minor issues
+5 = excellent / fully satisfies criterion
+
+Dimensions:
+- relevance (1-5): alignment with held-out topics/tasks.
+- specificity (1-5): concrete technical detail; non-generic wording.
+- coverage (1-5): captures breadth of important held-out interests.
+- consistency (1-5): grammatical, semantic, and cross-sentence coherence.
+
+Calibration guidance:
+- Score 1-2 when criterion is clearly violated or mostly unsupported by evidence.
+- Score 3 for partial match with noticeable gaps.
+- Score 4 for strong match with minor issues.
+- Score 5 only for clear, specific, and well-supported excellence.
+
+Mandatory failure rules:
+1) If the text has malformed/clipped/ungrammatical sentences -> consistency=1 and overall=1 and pass_fail=fail.
+2) If the text is semantically vague or awkward (example style: 'I am interested in knowledge, with a focus on resource.') -> specificity=1 and consistency=1 and overall=1 and pass_fail=fail.
+3) If the text is generic boilerplate and could describe many unrelated users -> specificity<=2 and pass_fail=fail if severe.
+Return strict JSON with keys: relevance,specificity,coverage,consistency,overall,pass_fail,rationale_short. Scores are 1.0-5.0. pass_fail is pass/fail.
+```
+
+### Prompt 10 — Pairwise judge user prompt
+
+```text
+Compare two candidate user profiles against held-out future interactions.
+
+User ID: {user_id}
+Candidate A ({variant_a}):
+{profile_a}
+
+Candidate B ({variant_b}):
+{profile_b}
+
+Held-out interactions (title + abstract):
+{holdout items}
+
+Evaluate A and B independently against the same rubric before making a final decision.
+Choose the better profile using this priority: semantic quality/coherence first, then relevance, then specificity/coverage.
+To reduce position bias, treat A/B labels as arbitrary and base judgment only on content quality and evidence alignment.
+If one profile is awkward or semantically vague, it should lose.
+Return strict JSON with keys: winner,confidence,reason_short where winner in {A,B,tie} and confidence in [0.0,1.0].
+```
 
 ## Request envelope actually sent to the API
 
-Each LLM call is sent as a 2-message chat payload from [llm_connector.py](hai/scripts/llm_connector.py#L117-L121):
+Each LLM call is sent as a 2-message chat payload:
 - `system`: one of the system prompts above
 - `user`: one of the user prompts above
 
-So “full prompt” on-wire is always:
+So full on-wire prompt is always:
 - `messages[0].content = system_prompt`
 - `messages[1].content = prompt`
 
-(For judge calls, JSON mode is requested via `force_json=True` in [llm_connector.py](hai/scripts/llm_connector.py#L220-L225).)
