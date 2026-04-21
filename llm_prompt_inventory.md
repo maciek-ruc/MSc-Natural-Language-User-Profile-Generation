@@ -1,8 +1,5 @@
-# LLM Prompt Inventory (current temporal split + profile generation flow)
+# LLM Prompts Finalized
 
-Scope covered:
-- profile generation prompts in [hai/scripts/generate_user_nl_profiles.py](hai/scripts/generate_user_nl_profiles.py)
-- judge prompts in [hai/scripts/run_temporal_split_experiment.py](hai/scripts/run_temporal_split_experiment.py)
 
 ## Prompt table
 
