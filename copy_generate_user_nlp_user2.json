@@ -1,0 +1,626 @@
+{
+  "generated_at": "2026-04-27T09:23:43.093777+00:00",
+  "run_id": "954cd397-81c4-43ee-928c-5887d021c770",
+  "mode": "hybrid",
+  "run_hybrid_4way": false,
+  "hybrid_weight_x": 0.8,
+  "publication_weight": 0.5,
+  "variant_id": "weighted",
+  "model": "gorina10.llama3.3:70b",
+  "resolved_model": "gorina10.llama3.3:70b",
+  "user_count": 1,
+  "batch_size": 0,
+  "batch_index": 1,
+  "records": [
+    {
+      "user_id": 2,
+      "status": "success",
+      "mode": "hybrid",
+      "variant_id": "weighted",
+      "prompt_id": "hybrid",
+      "llm": "gorina10.llama3.3:70b",
+      "profile_text": "I am interested in articles Section: This section consists of an array of objects, where each object represents an article with the following properties: `article_id`: A unique identifier for the article. `title`: The title of the article. `abstract`: A brief summary or abstract of the article. Interaction Topics Section: This section is an array of objects, each containing a single property `topic`, which represents different topics related to information retrieval, entity linking, semantic search, and more. Given this structure, if you're looking to extract specific information, such as all article titles or interaction topics, you can do so by iterating through the respective arrays in the JSON object.",
+      "meta": {
+        "mode": "hybrid",
+        "prompt_variant": "weighted",
+        "publication_weight": 0.5,
+        "weighted_publication_cap": 15,
+        "weighted_interaction_cap": 15,
+        "source_priority_instruction": null,
+        "publication_count": 15,
+        "evidence_json": {
+          "publications": [
+            {
+              "title": "Rankers, Judges, and Assistants: Towards Understanding the Interplay of LLMs in Information Retrieval Evaluation",
+              "abstract": "Large language models (LLMs) are increasingly integral to information retrieval (IR), powering ranking, evaluation, and AI-assisted content creation. This widespread adoption necessitates a critical examination of potential biases arising from the interplay between these LLM-based components. This paper synthesizes existing research and presents novel experiment designs that explore how LLM-based rankers and assistants influence LLM-based judges. We provide the first empirical evidence of LLM judges exhibiting significant bias towards LLM-based rankers. Furthermore, we observe limitations in LLM judges' ability to discern subtle system performance differences. Contrary to some previous findings, our preliminary study does not find evidence of bias against AI-generated content. These results highlight the need for a more holistic view of the LLM-driven information ecosystem. To this end, we offer initial guidelines and a research agenda to ensure the reliable use of LLMs in IR evaluation.",
+              "year": 2025,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 24,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book",
+                "Conference"
+              ]
+            },
+            {
+              "title": "User Simulation in the Era of Generative AI: User Modeling, Synthetic Data Generation, and System Evaluation",
+              "abstract": "User simulation is an emerging interdisciplinary topic with multiple critical applications in the era of Generative AI. It involves creating an intelligent agent that mimics the actions of a human user interacting with an AI system, enabling researchers to model and analyze user behaviour, generate synthetic data for training, and evaluate interactive AI systems in a controlled and reproducible manner. Because of its broad scope, research on this topic currently remains scattered across artificial intelligence, human-computer interaction, information science, computational social science, and psychology. To address this fragmented landscape of current research, this article presents a foundational synthesis. We highlight the paradigm shift from traditional predictive models to modern generative approaches, and explicitly frame critical ethical considerations -- demonstrating how controlled simulation serves not merely as a risk vector for bias, but as a powerful, proactive tool to ensure fair representation and system safety. Furthermore, we establish the theoretical connection between user simulation and the pursuit of Artificial General Intelligence, arguing that realistic simulators are indispensable catalysts for overcoming critical data and evaluation bottlenecks and optimizing personalization. Ultimately, we propose a practical, self-sustaining innovation ecosystem bridging academia and industry to advance this increasingly important technology.",
+              "year": 2025,
+              "venue": "arXiv.org",
+              "citation_count": 17,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle"
+              ]
+            },
+            {
+              "title": "Theory and Toolkits for User Simulation in the Era of Generative AI: User Modeling, Synthetic Data Generation, and System Evaluation",
+              "abstract": null,
+              "year": 2025,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 14,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book",
+                "Conference",
+                "Review"
+              ]
+            },
+            {
+              "title": "GINGER: Grounded Information Nugget-Based Generation of Responses",
+              "abstract": "Retrieval-augmented generation (RAG) faces challenges related to factual correctness, source attribution, and response completeness. To address them, we propose a modular pipeline for grounded response generation that operates on information nuggets - minimal, atomic units of relevant information extracted from retrieved documents. The multistage pipeline encompasses nugget detection, clustering, ranking, top cluster summarization, and fluency enhancement. It guarantees grounding in specific facts, facilitates source attribution, and ensures maximum information inclusion within length constraints. Experiments on the TREC RAG'24 dataset, using the AutoNuggetizer framework, demonstrate that GINGER achieves state-of-the-art performance on this benchmark.",
+              "year": 2025,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 11,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book",
+                "Conference"
+              ]
+            },
+            {
+              "title": "Limitations of Current Evaluation Practices for Conversational Recommender Systems and the Potential of User Simulation",
+              "abstract": "Research and development on conversational recommender systems (CRSs) critically depends on sound and reliable evaluation methodologies. However, the interactive nature of these systems poses significant challenges for automatic evaluation. This paper critically examines current evaluation practices and identifies two key limitations: the over-reliance on static test collections and the inadequacy of existing evaluation metrics. To substantiate this critique, we analyze real user interactions with nine existing CRSs and demonstrate a striking disconnect between self-reported user satisfaction and performance scores reported in prior literature. To address these limitations, this work explores the potential of user simulation to generate dynamic interaction data, offering a departure from static datasets. Furthermore, we propose novel evaluation metrics, based on a general reward/cost framework, designed to better align with real user satisfaction. Our analysis of different simulation approaches provides valuable insights into their effectiveness and reveals promising initial results, showing improved correlation with system rankings compared to human evaluation. While these findings indicate a significant step forward in CRS evaluation, we also identify areas for future research and refinement in both simulation techniques and evaluation metrics.",
+              "year": 2025,
+              "venue": "SIGIR-AP",
+              "citation_count": 5,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book"
+              ]
+            },
+            {
+              "title": "Second SIGIR Workshop on Simulations for Information Access (Sim4IA 2025)",
+              "abstract": "Simulations in information access (IA) have recently gained interest, as shown by various tutorials and workshops around that topic. Simulations can be key contributors to central IA research and evaluation questions, especially around interactive settings when real users are unavailable, or their participation is impossible due to ethical reasons. In addition, simulations in IA can help contribute to a better understanding of users, reduce complexity of evaluation experiments, and improve reproducibility. Building on recent developments in methods and toolkits, the second iteration of our Sim4IA workshop aims to again bring together researchers and practitioners to form an interactive and engaging forum for discussions on the future perspectives of the field. An additional aim is to plan an upcoming TREC/CLEF campaign.",
+              "year": 2025,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 5,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book",
+                "Conference",
+                "Review"
+              ]
+            },
+            {
+              "title": "Should We Tailor the Talk? Understanding the Impact of Conversational Styles on Preference Elicitation in Conversational Recommender Systems",
+              "abstract": "Conversational recommender systems (CRSs) provide users with an interactive means to express preferences and receive real-time personalized recommendations. The success of these systems is heavily influenced by the preference elicitation process. While existing research mainly focuses on what questions to ask during preference elicitation, there is a notable gap in understanding what role broader interaction patterns—including tone, pacing, and level of proactiveness—play in supporting users in completing a given task. This study investigates the impact of different conversational styles on preference elicitation, task performance, and user satisfaction with CRSs. We conducted a controlled experiment in the context of scientific literature recommendation, contrasting two distinct conversational styles—high involvement (fast-paced, direct, and proactive with frequent prompts) and high considerateness (polite and accommodating, prioritizing clarity and user comfort)—alongside a flexible experimental condition where users could switch between the two. Our results indicate that adapting conversational strategies based on user expertise and allowing flexibility between styles can enhance both user satisfaction and the effectiveness of recommendations in CRSs. Overall, our findings hold important implications for the design of future CRSs.",
+              "year": 2025,
+              "venue": "User Modeling, Adaptation, and Personalization",
+              "citation_count": 5,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book"
+              ]
+            },
+            {
+              "title": "Sim4IA-Bench: A User Simulation Benchmark Suite for Next Query and Utterance Prediction",
+              "abstract": "Validating user simulation is a difficult task due to the lack of established measures and benchmarks, which makes it challenging to assess whether a simulator accurately reflects real user behavior. As part of the Sim4IA Micro-Shared Task at the Sim4IA Workshop, SIGIR 2025, we present Sim4IA-Bench, a simulation benchmark suit for the prediction of the next queries and utterances, the first of its kind in the IR community. Our dataset as part of the suite comprises 160 real-world search sessions from the CORE search engine. For 70 of these sessions, up to 62 simulator runs are available, divided into Task A and Task B, in which different approaches predicted users next search queries or utterances. Sim4IA-Bench provides a basis for evaluating and comparing user simulation approaches and for developing new measures of simulator validity. Although modest in size, the suite represents the first publicly available benchmark that links real search sessions with simulated next-query predictions. In addition to serving as a testbed for next query prediction, it also enables exploratory studies on query reformulation behavior, intent drift, and interaction-aware retrieval evaluation. We also introduce a new measure for evaluating next-query predictions in this task. By making the suite publicly available, we aim to promote reproducible research and stimulate further work on realistic and explainable user simulation for information access: https://github.com/irgroup/Sim4IA-Bench.",
+              "year": 2025,
+              "venue": "arXiv.org",
+              "citation_count": 4,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle"
+              ]
+            },
+            {
+              "title": "UserSimCRS v2: Simulation-Based Evaluation for Conversational Recommender Systems",
+              "abstract": "Resources for simulation-based evaluation of conversational recommender systems (CRSs) are scarce. The UserSimCRS toolkit was introduced to address this gap. In this work, we present UserSimCRS v2, a significant upgrade aligning the toolkit with state-of-the-art research. Key extensions include an enhanced agenda-based user simulator, introduction of large language model-based simulators, integration for a wider range of CRSs and datasets, and new LLM-as-a-judge evaluation utilities. We demonstrate these extensions in a case study.",
+              "year": 2025,
+              "venue": "arXiv.org",
+              "citation_count": 2,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle"
+              ]
+            },
+            {
+              "title": "The Indispensable Role of User Simulation in the Pursuit of AGI",
+              "abstract": "Why user simulation research is crucial for making progress toward truly intelligent systems.",
+              "year": 2025,
+              "venue": "Communications of the ACM",
+              "citation_count": 1,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle"
+              ]
+            },
+            {
+              "title": "SimLab: A Platform for Simulation-based Evaluation of Conversational Information Access Systems",
+              "abstract": "Progress in conversational information access (CIA) systems has been hindered by the difficulty of evaluating such systems with reproducible experiments. While user simulation offers a promising solution, the lack of infrastructure and tooling to support this evaluation paradigm remains a significant barrier. To address this gap, we introduce SimLab, the first cloud-based platform providing a centralized solution for the community to benchmark both conversational systems and user simulators in a controlled and reproducible setting. We articulate the requirements for such a platform and propose a general infrastructure to meet them. We then present the design and implementation of an initial version of SimLab and showcase its features through an initial simulation-based evaluation task in conversational movie recommendation. Furthermore, we discuss the platform's sustainability and future opportunities for development, inviting the community to drive further progress in the fields of CIA and user simulation.",
+              "year": 2025,
+              "venue": "arXiv.org",
+              "citation_count": 0,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle"
+              ]
+            },
+            {
+              "title": "A Surprisingly Simple yet Effective Multi-Query Rewriting Method for Conversational Passage Retrieval",
+              "abstract": "Conversational passage retrieval is challenging as it often requires the resolution of references to previous utterances and needs to deal with the complexities of natural language, such as coreference and ellipsis. To address these challenges, pre-trained sequence-to-sequence neural query rewriters are commonly used to generate a single de-contextualized query based on conversation history. Previous research shows that combining multiple query rewrites for the same user utterance has a positive effect on retrieval performance. We propose the use of a neural query rewriter to generate multiple queries and show how to integrate those queries in the passage retrieval pipeline efficiently. The main strength of our approach lies in its simplicity: it leverages how the beam search algorithm works and can produce multiple query rewrites at no additional cost. Our contributions further include devising ways to utilize multi-query rewrites in both sparse and dense first-pass retrieval. We demonstrate that applying our approach on top of a standard passage retrieval pipeline delivers state-of-the-art performance without sacrificing efficiency.",
+              "year": 2024,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 21,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "Book",
+                "JournalArticle",
+                "Conference"
+              ]
+            },
+            {
+              "title": "Explainability for Transparent Conversational Information-Seeking",
+              "abstract": "The increasing reliance on digital information necessitates advancements in conversational search systems, particularly in terms of information transparency. While prior research in conversational information-seeking has concentrated on improving retrieval techniques, the challenge remains in generating responses useful from a user perspective. This study explores different methods of explaining the responses, hypothesizing that transparency about the source of the information, system confidence, and limitations can enhance users' ability to objectively assess the response. By exploring transparency across explanation type, quality, and presentation mode, this research aims to bridge the gap between system-generated responses and responses verifiable by the user. We design a user study to answer questions concerning the impact of (1) the quality of explanations enhancing the response on its usefulness and (2) ways of presenting explanations to users. The analysis of the collected data reveals lower user ratings for noisy explanations, although these scores seem insensitive to the quality of the response. Inconclusive results on the explanations presentation format suggest that it may not be a critical factor in this setting.",
+              "year": 2024,
+              "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval",
+              "citation_count": 21,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book",
+                "Conference"
+              ]
+            },
+            {
+              "title": "Towards a Formal Characterization of User Simulation Objectives in Conversational Information Access",
+              "abstract": "User simulation is a promising approach for automatically training and evaluating conversational information access agents, enabling the generation of synthetic dialogues and facilitating reproducible experiments at scale. However, the objectives of user simulation for the different uses remain loosely defined, hindering the development of effective simulators. In this work, we formally characterize the distinct objectives for user simulators: training aims to maximize behavioral similarity to real users, while evaluation focuses on the accurate prediction of real-world conversational agent performance. Through an empirical study, we demonstrate that optimizing for one objective does not necessarily lead to improved performance on the other. This finding underscores the need for tailored design considerations depending on the intended use of the simulator. By establishing clear objectives and proposing concrete measures to evaluate user simulators against those objectives, we pave the way for the development of simulators that are specifically tailored to their intended use, ultimately leading to more effective conversational agents.",
+              "year": 2024,
+              "venue": "International Conference on the Theory of Information Retrieval",
+              "citation_count": 11,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book"
+              ]
+            },
+            {
+              "title": "Identifying Breakdowns in Conversational Recommender Systems using User Simulation",
+              "abstract": "We present a methodology to systematically test conversational recommender systems with regards to conversational breakdowns. It involves examining conversations generated between the system and simulated users for a set of pre-defined breakdown types, extracting responsible conversational paths, and characterizing them in terms of the underlying dialogue intents. User simulation offers the advantages of simplicity, cost-effectiveness, and time efficiency for obtaining conversations where potential breakdowns can be identified. The proposed methodology can be used as diagnostic tool as well as a development tool to improve conversational recommendation systems. We apply our methodology in a case study with an existing conversational recommender system and user simulator, demonstrating that with just a few iterations, we can make the system more robust to conversational breakdowns.",
+              "year": 2024,
+              "venue": "International Conference on Conversational User Interfaces",
+              "citation_count": 7,
+              "fields_of_study": [
+                "Computer Science"
+              ],
+              "publication_types": [
+                "JournalArticle",
+                "Book"
+              ]
+            }
+          ],
+          "interactions": [
+            {
+              "article_id": "2603.23849",
+              "title": "VILLA: Versatile Information Retrieval From Scientific Literature Using Large LAnguage Models",
+              "abstract": "The lack of high-quality ground truth datasets to train machine learning (ML) models impedes the potential of artificial intelligence (AI) for science research. Scientific information extraction (SIE) from the literature using LLMs is emerging as a powerful approach to automate the creation of these datasets. However, existing LLM-based approaches and benchmarking studies for SIE focus on broad topics such as biomedicine and chemistry, are limited to choice-based tasks, and focus on extracting information from short and well-formatted text. The potential of SIE methods in complex, open-ended tasks is considerably under-explored. In this study, we used a domain that has been virtually ignored in SIE, namely virology, to address these research gaps. We design a unique, open-ended SIE task of extracting mutations in a given virus that modify its interaction with the host. We develop a new, multi-step retrieval augmented generation (RAG) framework called VILLA for SIE. In parallel, we curate a novel dataset of 629 mutations in ten influenza A virus proteins obtained from 239 scientific publications to serve as ground truth for the mutation extraction task. Finally, we demonstrate VILLA's superior performance using a novel and comprehensive evaluation and comparison with vanilla RAG and other state-of-the art RAG- and agent-based tools for SIE.",
+              "event_time": "2026-04-07 15:34:14"
+            },
+            {
+              "article_id": "2604.00411",
+              "title": "Efficient DPF-based Error-Detecting Information-Theoretic Private Information Retrieval Over Rings",
+              "abstract": "Authenticated private information retrieval (APIR) is the state-of-the-art error-detecting private information retrieval (ED-PIR), using Distributed Point Functions (DPFs) for subpolynomial complexity and privacy. However, its finite field structure restricts it to prime-order DPFs, leading to prohibitively large key sizes under information-theoretic settings, while its dual-DPF-key design introduces unnecessary communication overhead, limiting its practicality for large-scale deployments. This paper proposes a novel ring-based information-theoretic ED-PIR (itED-PIR) scheme that overcomes these limitations by leveraging prime-power-order information-theoretic DPFs (itDPFs). Built over a prime-power ring, the proposed scheme breaks APIR's field-induced constraint to enable more efficient DPF utilization, significantly reducing key size growth and rendering the scheme feasible for high-security scenarios. Additionally, a single-itDPF-key design halves query-side communication overhead by eliminating APIR's redundant dual-key setup, without compromising privacy or verifiability. Beyond immediate efficiency gains, this work establishes a lightweight, flexible framework for constructing DPF-based malicious-resilient private information retrieval, opening new avenues for privacy-preserving data retrieval in distributed storage systems and post-quantum privacy protocols.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.30025",
+              "title": "ContextClaim: A Context-Driven Paradigm for Verifiable Claim Detection",
+              "abstract": "Verifiable claim detection asks whether a claim expresses a factual statement that can, in principle, be assessed against external evidence. As an early filtering stage in automated fact-checking, it plays an important role in reducing the burden on downstream verification components. However, existing approaches to claim detection, whether based on check-worthiness or verifiability, rely solely on the claim text itself. This is a notable limitation for verifiable claim detection in particular, where determining whether a claim is checkable may benefit from knowing what entities and events it refers to and whether relevant information exists to support verification. Inspired by the established role of evidence retrieval in later-stage claim verification, we propose Context-Driven Claim Detection (ContextClaim), a paradigm that advances retrieval to the detection stage. ContextClaim extracts entity mentions from the input claim, retrieves relevant information from Wikipedia as a structured knowledge source, and employs large language models to produce concise contextual summaries for downstream classification. We evaluate ContextClaim on two datasets covering different topics and text genres, the CheckThat! 2022 COVID-19 Twitter dataset and the PoliClaim political debate dataset, across encoder-only and decoder-only models under fine-tuning, zero-shot, and few-shot settings. Results show that context augmentation can improve verifiable claim detection, although its effectiveness varies across domains, model architectures, and learning settings. Through component analysis, human evaluation, and error analysis, we further examine when and why the retrieved context contributes to more reliable verifiability judgments.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.29875",
+              "title": "UnWeaving the knots of GraphRAG -- turns out VectorRAG is almost enough",
+              "abstract": "One of the key problems in Retrieval-augmented generation (RAG) systems is that chunk-based retrieval pipelines represent the source chunks as atomic objects, mixing the information contained within such a chunk into a single vector. These vector representations are then fundamentally treated as isolated, independent and self-sufficient, with no attempt to represent possible relations between them. Such an approach has no dedicated mechanisms for handling multi-hop questions. Graph-based RAG systems aimed to ameliorate this problem by modeling information as knowledge-graphs, with entities represented by nodes being connected by robust relations, and forming hierarchical communities. This approach however suffers from its own issues with some of them being: orders of magnitude increased componential complexity in order to create graph-based indices, and reliance on heuristics for performing retrieval. We propose UnWeaver, a novel RAG framework simplifying the idea of GraphRAG. UnWeaver disentangles the contents of the documents into entities which can occur across multiple chunks using an LLM. In the retrieval process entities are used as an intermediate way of recovering original text chunks hence preserving fidelity to the source material. We argue that entity-based decomposition yields a more distilled representation of original information, and additionally serves to reduce noise in the indexing, and generation process.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.28773",
+              "title": "UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG",
+              "abstract": "Large language models (LLMs) frequently generate confident yet factually incorrect content when used for language generation (a phenomenon often known as hallucination). Retrieval augmented generation (RAG) tries to reduce factual errors by identifying information in a knowledge corpus and putting it in the context window of the model. While this approach is well-established for document-structured data, it is non-trivial to adapt it for Knowledge Graphs (KGs), especially for queries that require multi-node/multi-hop reasoning on graphs. We introduce ULTRAG, a general framework for retrieving information from Knowledge Graphs that shifts away from classical RAG. By endowing LLMs with off-the-shelf neural query executing modules, we highlight how readily available language models can achieve state-of-the-art results on Knowledge Graph Question Answering (KGQA) tasks without any retraining of the LLM or executor involved. In our experiments, ULTRAG achieves better performance when compared to state-of-the-art KG-RAG solutions, and it enables language models to interface with Wikidata-scale graphs (116M entities, 1.6B relations) at comparable or lower costs.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.28512",
+              "title": "TIEG-Youpu Solution for NeurIPS 2022 WikiKG90Mv2-LSC",
+              "abstract": "WikiKG90Mv2 in NeurIPS 2022 is a large encyclopedic knowledge graph. Embedding knowledge graphs into continuous vector spaces is important for many practical applications, such as knowledge acquisition, question answering, and recommendation systems. Compared to existing knowledge graphs, WikiKG90Mv2 is a large scale knowledge graph, which is composed of more than 90 millions of entities. Both efficiency and accuracy should be considered when building graph embedding models for knowledge graph at scale. To this end, we follow the retrieve then re-rank pipeline, and make novel modifications in both retrieval and re-ranking stage. Specifically, we propose a priority infilling retrieval model to obtain candidates that are structurally and semantically similar. Then we propose an ensemble based re-ranking model with neighbor enhanced representations to produce final link prediction results among retrieved candidates. Experimental results show that our proposed method outperforms existing baseline methods and improves MRR of validation set from 0.2342 to 0.2839.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.27623",
+              "title": "$\\texttt{Exoformer}$: Accelerating Bayesian atmospheric retrievals with transformer neural networks",
+              "abstract": "Computationally expensive and time-consuming Bayesian atmospheric retrievals pose a significant bottleneck for the rapid analysis of high-quality exoplanetary spectra from present and next generation space telescopes, such as JWST and Ariel. As these missions demand more complex atmospheric models to fully characterize the spectral features they uncover, they will benefit from data-driven analysis techniques such as machine and deep learning. We introduce and detail a novel approach that uses a transformer-based neural network ($\\texttt{Exoformer}$) to rapidly generate informative prior distributions for atmospheric transmission spectra of hot Jupiters. We demonstrate the effectiveness of $\\texttt{Exoformer}$ using both simulated observations and real JWST data of WASP-39b and WASP-17b within the TauREx retrieval framework, leveraging the nested sampling algorithm. By replacing standard uniform priors with $\\texttt{Exoformer}$-derived informative priors, our method accelerates nested-sampling retrievals by factor of 3-8 in the tested cases, while preserving the retrieved parameters and best-fit spectra. Crucially, we ensure that the retrieved parameters and the best-fit models remain consistent with results from classical methods. Furthermore, we confirm the statistical consistency of the two retrieval approaches by comparing their log-Bayesian evidence, obtaining absolute values of each Bayes factor $|Î\\log{Z}|<5$, i.e., with no strong preference following common scales for either model. This hybrid approach significantly enhances the efficiency of atmospheric retrieval tools without compromising their accuracy, paving the way for more rapid analysis of complex exoplanetary spectra and enabling the integration of more realistic atmospheric models.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.18459",
+              "title": "HypeMed: Enhancing Medication Recommendations with Hypergraph-Based Patient Relationships",
+              "abstract": "Medication recommendations aim to generate safe and effective medication sets from health records. However, accurately recommending medications hinges on inferring a patient's latent clinical condition from sparse and noisy observations, which requires both (i) preserving the visit-level combinatorial semantics of co-occurring entities and (ii) leveraging informative historical references through effective, visit-conditioned retrieval. Most existing methods fall short in one of both aspects: graph-based modeling often fragments higher-order intra-visit patterns into pairwise relations, while inter-visit augmentation methods commonly exhibit an imbalance between learning a globally stable representation space and performing dynamic retrieval within it. To address these limitations, this paper proposes HypeMed, a two-stage hypergraph-based framework unifying intra-visit coherence modeling and inter-visit augmentation. HypeMed consists of two core modules: MedRep for representation pre-training, and SimMR for similarity-enhanced recommendation. In the first stage, MedRep encodes clinical visits as hyperedges via knowledge-aware contrastive pre-training, creating a globally consistent, retrieval-friendly embedding space. In the second stage, SimMR performs dynamic retrieval within this space, fusing retrieved references with the patient's longitudinal data to refine medication prediction. Evaluation on real-world benchmarks shows that HypeMed outperforms state-of-the-art baselines in both recommendation precision and DDI reduction, simultaneously enhancing the effectiveness and safety of clinical decision support.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.18005",
+              "title": "Negative Sampling Techniques in Information Retrieval: A Survey",
+              "abstract": "Information Retrieval (IR) is fundamental to many modern NLP applications. The rise of dense retrieval (DR), using neural networks to learn semantic vector representations, has significantly advanced IR performance. Central to training effective dense retrievers through contrastive learning is the selection of informative negative samples. Synthesizing 35 seminal papers, this survey provides a comprehensive and up-to-date overview of negative sampling techniques in dense IR. Our unique contribution is the focus on modern NLP applications and the inclusion of recent Large Language Model (LLM)-driven methods, an area absent in prior reviews. We propose a taxonomy that categorizes techniques including random, static/dynamically mined, and synthetic datasets. We then analyze these approaches with respect to trade-offs between effectiveness, computational cost, and implementation difficulty. The survey concludes by outlining current challenges and promising future directions for the use of LLM-generated synthetic data.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.16737",
+              "title": "Retrieving Counterfactuals Improves Visual In-Context Learning",
+              "abstract": "Vision-language models (VLMs) have achieved impressive performance across a wide range of multimodal reasoning tasks, but they often struggle to disentangle fine-grained visual attributes and reason about underlying causal relationships. In-context learning (ICL) offers a promising avenue for VLMs to adapt to new tasks, but its effectiveness critically depends on the selection of demonstration examples. Existing retrieval-augmented approaches typically rely on passive similarity-based retrieval, which tends to select correlated but non-causal examples, amplifying spurious associations and limiting model robustness. We introduce CIRCLES (Composed Image Retrieval for Causal Learning Example Selection), a novel framework that actively constructs demonstration sets by retrieving counterfactual-style examples through targeted, attribute-guided composed image retrieval. By incorporating counterfactual-style examples, CIRCLES enables VLMs to implicitly reason about the causal relations between attributes and outcomes, moving beyond superficial correlations and fostering more robust and grounded reasoning. Comprehensive experiments on four diverse datasets demonstrate that CIRCLES consistently outperforms existing methods across multiple architectures, especially on small-scale models, with pronounced gains under information scarcity. Furthermore, CIRCLES retrieves more diverse and causally informative examples, providing qualitative insights into how models leverage in-context demonstrations for improved reasoning. Our code is available at https://github.com/gzxiong/CIRCLES.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.16877",
+              "title": "Enhancing Financial Report Question-Answering: A Retrieval-Augmented Generation System with Reranking Analysis",
+              "abstract": "Financial analysts face significant challenges extracting information from lengthy 10-K reports, which often exceed 100 pages. This paper presents a Retrieval-Augmented Generation (RAG) system designed to answer questions about S&P 500 financial reports and evaluates the impact of neural reranking on system performance. Our pipeline employs hybrid search combining full-text and semantic retrieval, followed by an optional reranking stage using a cross-encoder model. We conduct systematic evaluation using the FinDER benchmark dataset, comprising 1,500 queries across five experimental groups. Results demonstrate that reranking significantly improves answer quality, achieving 49.0 percent correctness for scores of 8 or above compared to 33.5 percent without reranking, representing a 15.5 percentage point improvement. Additionally, the error rate for completely incorrect answers decreases from 35.3 percent to 22.5 percent. Our findings emphasize the critical role of reranking in financial RAG systems and demonstrate performance improvements over baseline methods through modern language models and refined retrieval strategies.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.12282",
+              "title": "Algorithmic Trust and Compliance: Benchmarking Brand Notability for UK iGaming Entities in Generative Search Engines",
+              "abstract": "The rapid adoption of generative AI-powered search engines, such as ChatGPT, Perplexity, and Gemini, is fundamentally reshaping information retrieval. We are witnessing a critical shift from traditional ranked lists to synthesized, citation-backed answers. This paradigm shift challenges established Search Engine Optimization (SEO) practices and necessitates a new framework, termed Generative Engine Optimization (GEO). In highly regulated environments like the UK iGaming sector, visibility is no longer dictated by keyword density, but by an entity's ability to project \"Algorithmic Trust\". This report presents an empirical analysis of how compliance signals -- such as UK Gambling Commission (UKGC) standards -- function as authority multipliers for Large Language Models (LLMs) when properly structured. Recent large-scale experiments reveal that AI Search exhibits a systematic and overwhelming bias towards Earned media (third-party, authoritative sources) over Brand-owned content. Consequently, practitioners must engineer their content for machine scannability and justification to dominate these new AI-perceived authority metrics.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.16411",
+              "title": "RECOVER: Robust Entity Correction via agentic Orchestration of hypothesis Variants for Evidence-based Recovery",
+              "abstract": "Entity recognition in Automatic Speech Recognition (ASR) is challenging for rare and domain-specific terms. In domains such as finance, medicine, and air traffic control, these errors are costly. If the entities are entirely absent from the ASR output, post-ASR correction becomes difficult. To address this, we introduce RECOVER, an agentic correction framework that serves as a tool-using agent. It leverages multiple hypotheses as evidence from ASR, retrieves relevant entities, and applies Large Language Model (LLM) correction under constraints. The hypotheses are used using different strategies, namely, 1-Best, Entity-Aware Select, Recognizer Output Voting Error Reduction (ROVER) Ensemble, and LLM-Select. Evaluated across five diverse datasets, it achieves 8-46% relative reductions in entity-phrase word error rate (E-WER) and increases recall by up to 22 percentage points. The LLM-Select achieves the best overall performance in entity correction while maintaining overall WER.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.07179",
+              "title": "Retrieving Minimal and Sufficient Reasoning Subgraphs with Graph Foundation Models for Path-aware GraphRAG",
+              "abstract": "Graph-based retrieval-augmented generation (GraphRAG) exploits structured knowledge to support knowledge-intensive reasoning. However, most existing methods treat graphs as intermediate artifacts, and the few subgraph-based retrieval methods depend on heuristic rules coupled with domain-specific distributions. They fail in typical cold-start scenarios where data in target domains is scarce, thus yielding reasoning contexts that are either informationally incomplete or structurally redundant. In this work, we revisit retrieval from a structural perspective, and propose GFM-Retriever that directly responds to user queries with a subgraph, where a pre-trained Graph Foundation Model acts as a cross-domain Retriever for multi-hop path-aware reasoning. Building on this perspective, we repurpose a pre-trained GFM from an entity ranking function into a generalized retriever to support cross-domain retrieval. On top of the retrieved graph, we further derive a label-free subgraph selector optimized by a principled Information Bottleneck objective to identify the query-conditioned subgraph, which contains informationally sufficient and structurally minimal golden evidence in a self-contained \"core set\". To connect structure with generation, we explicitly extract and reorganize relational paths as in-context prompts, enabling interpretable reasoning. Extensive experiments on multi-hop question answering benchmarks demonstrate that GFM-Retriever achieves state-of-the-art performance in both retrieval quality and answer generation, while maintaining efficiency.",
+              "event_time": "2026-03-10 05:15:30"
+            },
+            {
+              "article_id": "2603.06902",
+              "title": "Empowering Locally Deployable Medical Agent via State Enhanced Logical Skills for FHIR-based Clinical Tasks",
+              "abstract": "While Large Language Models demonstrate immense potential as proactive Medical Agents, their real-world deployment is severely bottlenecked by data scarcity under privacy constraints. To overcome this, we propose State-Enhanced Logical-Skill Memory (SELSM), a training-free framework that distills simulated clinical trajectories into entity-agnostic operational rules within an abstract skill space. During inference, a Query-Anchored Two-Stage Retrieval mechanism dynamically fetches these entity-agnostic logical priors to guide the agent's step-by-step reasoning, effectively resolving the state polysemy problem. Evaluated on MedAgentBench -- the only authoritative high-fidelity virtual EHR sandbox benchmarked with real clinical data -- SELSM substantially elevates the zero-shot capabilities of locally deployable foundation models (30B--32B parameters). Notably, on the Qwen3-30B-A3B backbone, our framework completely eliminates task chain breakdowns to achieve a 100\\% completion rate, boosting the overall success rate by an absolute 22.67\\% and significantly outperforming existing memory-augmented baselines. This study demonstrates that equipping models with a dynamically updatable, state-enhanced cognitive scaffold is a privacy-preserving and computationally efficient pathway for local adaptation of AI agents to clinical information systems. While currently validated on FHIR-based EHR interactions as an initial step, the entity-agnostic design of SELSM provides a principled foundation toward broader clinical deployment.",
+              "event_time": "2026-03-10 05:15:30"
+            }
+          ],
+          "interaction_categories": [],
+          "interaction_topics": [
+            {
+              "topic": "entity linking in query for entity"
+            },
+            {
+              "topic": "entity linking and retrieval for semantic"
+            },
+            {
+              "topic": "living labs for information retrieval evaluation"
+            },
+            {
+              "topic": "information for ad hoc entity retrieval"
+            },
+            {
+              "topic": "information retrieval evaluation"
+            },
+            {
+              "topic": "retrieval models"
+            },
+            {
+              "topic": "neural information retrieval"
+            },
+            {
+              "topic": "neural networks for information retrieval"
+            },
+            {
+              "topic": "structure query-based image retrieval"
+            },
+            {
+              "topic": "semantic search for entity"
+            }
+          ]
+        },
+        "rewrite_meta": {
+          "rewrite_attempted": false,
+          "rewrite_selected": false,
+          "original_raw": "The provided text is a JSON (JavaScript Object Notation) object that contains two main sections: `articles` and `interaction_topics`. \n\n1. **Articles Section**: This section consists of an array of objects, where each object represents an article with the following properties:\n   - `article_id`: A unique identifier for the article.\n   - `title`: The title of the article.\n   - `abstract`: A brief summary or abstract of the article.\n\n2. **Interaction Topics Section**: This section is an array of objects, each containing a single property `topic`, which represents different topics related to information retrieval, entity linking, semantic search, and more.\n\nGiven this structure, if you're looking to extract specific information, such as all article titles or interaction topics, you can do so by iterating through the respective arrays in the JSON object. \n\nFor example, to print out all the article titles, you could use a loop like this (assuming you're working in JavaScript):\n\n```javascript\nconst jsonData = { /* your JSON data here */ };\n\njsonData.articles.forEach(article => {\n  console.log",
+          "original_sanitized": "I am interested in articles Section: This section consists of an array of objects, where each object represents an article with the following properties: `article_id`: A unique identifier for the article. `title`: The title of the article. `abstract`: A brief summary or abstract of the article. Interaction Topics Section: This section is an array of objects, each containing a single property `topic`, which represents different topics related to information retrieval, entity linking, semantic search, and more. Given this structure, if you're looking to extract specific information, such as all article titles or interaction topics, you can do so by iterating through the respective arrays in the JSON object.",
+          "original_passes_quality": true,
+          "final_source": "original"
+        },
+        "recent_publications": [
+          {
+            "title": "Rankers, Judges, and Assistants: Towards Understanding the Interplay of LLMs in Information Retrieval Evaluation",
+            "year": 2025,
+            "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval"
+          },
+          {
+            "title": "User Simulation in the Era of Generative AI: User Modeling, Synthetic Data Generation, and System Evaluation",
+            "year": 2025,
+            "venue": "arXiv.org"
+          },
+          {
+            "title": "Theory and Toolkits for User Simulation in the Era of Generative AI: User Modeling, Synthetic Data Generation, and System Evaluation",
+            "year": 2025,
+            "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval"
+          },
+          {
+            "title": "GINGER: Grounded Information Nugget-Based Generation of Responses",
+            "year": 2025,
+            "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval"
+          },
+          {
+            "title": "Limitations of Current Evaluation Practices for Conversational Recommender Systems and the Potential of User Simulation",
+            "year": 2025,
+            "venue": "SIGIR-AP"
+          },
+          {
+            "title": "Second SIGIR Workshop on Simulations for Information Access (Sim4IA 2025)",
+            "year": 2025,
+            "venue": "Annual International ACM SIGIR Conference on Research and Development in Information Retrieval"
+          },
+          {
+            "title": "Should We Tailor the Talk? Understanding the Impact of Conversational Styles on Preference Elicitation in Conversational Recommender Systems",
+            "year": 2025,
+            "venue": "User Modeling, Adaptation, and Personalization"
+          },
+          {
+            "title": "Sim4IA-Bench: A User Simulation Benchmark Suite for Next Query and Utterance Prediction",
+            "year": 2025,
+            "venue": "arXiv.org"
+          },
+          {
+            "title": "UserSimCRS v2: Simulation-Based Evaluation for Conversational Recommender Systems",
+            "year": 2025,
+            "venue": "arXiv.org"
+          },
+          {
+            "title": "The Indispensable Role of User Simulation in the Pursuit of AGI",
+            "year": 2025,
+            "venue": "Communications of the ACM"
+          }
+        ],
+        "has_interaction_signal": true,
+        "interaction_summary": {
+          "top_categories": [],
+          "top_topics": [
+            {
+              "topic": "entity linking in query for entity"
+            },
+            {
+              "topic": "entity linking and retrieval for semantic"
+            },
+            {
+              "topic": "living labs for information retrieval evaluation"
+            },
+            {
+              "topic": "information for ad hoc entity retrieval"
+            },
+            {
+              "topic": "information retrieval evaluation"
+            },
+            {
+              "topic": "retrieval models"
+            },
+            {
+              "topic": "neural information retrieval"
+            },
+            {
+              "topic": "neural networks for information retrieval"
+            },
+            {
+              "topic": "structure query-based image retrieval"
+            },
+            {
+              "topic": "semantic search for entity"
+            }
+          ],
+          "recent_interactions": [
+            {
+              "title": "VILLA: Versatile Information Retrieval From Scientific Literature Using Large LAnguage Models",
+              "event_time": "2026-04-07 15:34:14"
+            },
+            {
+              "title": "Efficient DPF-based Error-Detecting Information-Theoretic Private Information Retrieval Over Rings",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "title": "ContextClaim: A Context-Driven Paradigm for Verifiable Claim Detection",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "title": "UnWeaving the knots of GraphRAG -- turns out VectorRAG is almost enough",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "title": "UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "title": "TIEG-Youpu Solution for NeurIPS 2022 WikiKG90Mv2-LSC",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "title": "$\\texttt{Exoformer}$: Accelerating Bayesian atmospheric retrievals with transformer neural networks",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "title": "HypeMed: Enhancing Medication Recommendations with Hypergraph-Based Patient Relationships",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "title": "Negative Sampling Techniques in Information Retrieval: A Survey",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "title": "Retrieving Counterfactuals Improves Visual In-Context Learning",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "title": "Enhancing Financial Report Question-Answering: A Retrieval-Augmented Generation System with Reranking Analysis",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "title": "Algorithmic Trust and Compliance: Benchmarking Brand Notability for UK iGaming Entities in Generative Search Engines",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "title": "RECOVER: Robust Entity Correction via agentic Orchestration of hypothesis Variants for Evidence-based Recovery",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "title": "Retrieving Minimal and Sufficient Reasoning Subgraphs with Graph Foundation Models for Path-aware GraphRAG",
+              "event_time": "2026-03-10 05:15:30"
+            },
+            {
+              "title": "Empowering Locally Deployable Medical Agent via State Enhanced Logical Skills for FHIR-based Clinical Tasks",
+              "event_time": "2026-03-10 05:15:30"
+            }
+          ],
+          "interacted_articles": [
+            {
+              "article_id": "2603.23849",
+              "title": "VILLA: Versatile Information Retrieval From Scientific Literature Using Large LAnguage Models",
+              "abstract": "The lack of high-quality ground truth datasets to train machine learning (ML) models impedes the potential of artificial intelligence (AI) for science research. Scientific information extraction (SIE) from the literature using LLMs is emerging as a powerful approach to automate the creation of these datasets. However, existing LLM-based approaches and benchmarking studies for SIE focus on broad topics such as biomedicine and chemistry, are limited to choice-based tasks, and focus on extracting information from short and well-formatted text. The potential of SIE methods in complex, open-ended tasks is considerably under-explored. In this study, we used a domain that has been virtually ignored in SIE, namely virology, to address these research gaps. We design a unique, open-ended SIE task of extracting mutations in a given virus that modify its interaction with the host. We develop a new, multi-step retrieval augmented generation (RAG) framework called VILLA for SIE. In parallel, we curate a novel dataset of 629 mutations in ten influenza A virus proteins obtained from 239 scientific publications to serve as ground truth for the mutation extraction task. Finally, we demonstrate VILLA's superior performance using a novel and comprehensive evaluation and comparison with vanilla RAG and other state-of-the art RAG- and agent-based tools for SIE.",
+              "event_time": "2026-04-07 15:34:14"
+            },
+            {
+              "article_id": "2604.00411",
+              "title": "Efficient DPF-based Error-Detecting Information-Theoretic Private Information Retrieval Over Rings",
+              "abstract": "Authenticated private information retrieval (APIR) is the state-of-the-art error-detecting private information retrieval (ED-PIR), using Distributed Point Functions (DPFs) for subpolynomial complexity and privacy. However, its finite field structure restricts it to prime-order DPFs, leading to prohibitively large key sizes under information-theoretic settings, while its dual-DPF-key design introduces unnecessary communication overhead, limiting its practicality for large-scale deployments. This paper proposes a novel ring-based information-theoretic ED-PIR (itED-PIR) scheme that overcomes these limitations by leveraging prime-power-order information-theoretic DPFs (itDPFs). Built over a prime-power ring, the proposed scheme breaks APIR's field-induced constraint to enable more efficient DPF utilization, significantly reducing key size growth and rendering the scheme feasible for high-security scenarios. Additionally, a single-itDPF-key design halves query-side communication overhead by eliminating APIR's redundant dual-key setup, without compromising privacy or verifiability. Beyond immediate efficiency gains, this work establishes a lightweight, flexible framework for constructing DPF-based malicious-resilient private information retrieval, opening new avenues for privacy-preserving data retrieval in distributed storage systems and post-quantum privacy protocols.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.30025",
+              "title": "ContextClaim: A Context-Driven Paradigm for Verifiable Claim Detection",
+              "abstract": "Verifiable claim detection asks whether a claim expresses a factual statement that can, in principle, be assessed against external evidence. As an early filtering stage in automated fact-checking, it plays an important role in reducing the burden on downstream verification components. However, existing approaches to claim detection, whether based on check-worthiness or verifiability, rely solely on the claim text itself. This is a notable limitation for verifiable claim detection in particular, where determining whether a claim is checkable may benefit from knowing what entities and events it refers to and whether relevant information exists to support verification. Inspired by the established role of evidence retrieval in later-stage claim verification, we propose Context-Driven Claim Detection (ContextClaim), a paradigm that advances retrieval to the detection stage. ContextClaim extracts entity mentions from the input claim, retrieves relevant information from Wikipedia as a structured knowledge source, and employs large language models to produce concise contextual summaries for downstream classification. We evaluate ContextClaim on two datasets covering different topics and text genres, the CheckThat! 2022 COVID-19 Twitter dataset and the PoliClaim political debate dataset, across encoder-only and decoder-only models under fine-tuning, zero-shot, and few-shot settings. Results show that context augmentation can improve verifiable claim detection, although its effectiveness varies across domains, model architectures, and learning settings. Through component analysis, human evaluation, and error analysis, we further examine when and why the retrieved context contributes to more reliable verifiability judgments.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.29875",
+              "title": "UnWeaving the knots of GraphRAG -- turns out VectorRAG is almost enough",
+              "abstract": "One of the key problems in Retrieval-augmented generation (RAG) systems is that chunk-based retrieval pipelines represent the source chunks as atomic objects, mixing the information contained within such a chunk into a single vector. These vector representations are then fundamentally treated as isolated, independent and self-sufficient, with no attempt to represent possible relations between them. Such an approach has no dedicated mechanisms for handling multi-hop questions. Graph-based RAG systems aimed to ameliorate this problem by modeling information as knowledge-graphs, with entities represented by nodes being connected by robust relations, and forming hierarchical communities. This approach however suffers from its own issues with some of them being: orders of magnitude increased componential complexity in order to create graph-based indices, and reliance on heuristics for performing retrieval. We propose UnWeaver, a novel RAG framework simplifying the idea of GraphRAG. UnWeaver disentangles the contents of the documents into entities which can occur across multiple chunks using an LLM. In the retrieval process entities are used as an intermediate way of recovering original text chunks hence preserving fidelity to the source material. We argue that entity-based decomposition yields a more distilled representation of original information, and additionally serves to reduce noise in the indexing, and generation process.",
+              "event_time": "2026-04-02 05:15:42"
+            },
+            {
+              "article_id": "2603.28773",
+              "title": "UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG",
+              "abstract": "Large language models (LLMs) frequently generate confident yet factually incorrect content when used for language generation (a phenomenon often known as hallucination). Retrieval augmented generation (RAG) tries to reduce factual errors by identifying information in a knowledge corpus and putting it in the context window of the model. While this approach is well-established for document-structured data, it is non-trivial to adapt it for Knowledge Graphs (KGs), especially for queries that require multi-node/multi-hop reasoning on graphs. We introduce ULTRAG, a general framework for retrieving information from Knowledge Graphs that shifts away from classical RAG. By endowing LLMs with off-the-shelf neural query executing modules, we highlight how readily available language models can achieve state-of-the-art results on Knowledge Graph Question Answering (KGQA) tasks without any retraining of the LLM or executor involved. In our experiments, ULTRAG achieves better performance when compared to state-of-the-art KG-RAG solutions, and it enables language models to interface with Wikidata-scale graphs (116M entities, 1.6B relations) at comparable or lower costs.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.28512",
+              "title": "TIEG-Youpu Solution for NeurIPS 2022 WikiKG90Mv2-LSC",
+              "abstract": "WikiKG90Mv2 in NeurIPS 2022 is a large encyclopedic knowledge graph. Embedding knowledge graphs into continuous vector spaces is important for many practical applications, such as knowledge acquisition, question answering, and recommendation systems. Compared to existing knowledge graphs, WikiKG90Mv2 is a large scale knowledge graph, which is composed of more than 90 millions of entities. Both efficiency and accuracy should be considered when building graph embedding models for knowledge graph at scale. To this end, we follow the retrieve then re-rank pipeline, and make novel modifications in both retrieval and re-ranking stage. Specifically, we propose a priority infilling retrieval model to obtain candidates that are structurally and semantically similar. Then we propose an ensemble based re-ranking model with neighbor enhanced representations to produce final link prediction results among retrieved candidates. Experimental results show that our proposed method outperforms existing baseline methods and improves MRR of validation set from 0.2342 to 0.2839.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.27623",
+              "title": "$\\texttt{Exoformer}$: Accelerating Bayesian atmospheric retrievals with transformer neural networks",
+              "abstract": "Computationally expensive and time-consuming Bayesian atmospheric retrievals pose a significant bottleneck for the rapid analysis of high-quality exoplanetary spectra from present and next generation space telescopes, such as JWST and Ariel. As these missions demand more complex atmospheric models to fully characterize the spectral features they uncover, they will benefit from data-driven analysis techniques such as machine and deep learning. We introduce and detail a novel approach that uses a transformer-based neural network ($\\texttt{Exoformer}$) to rapidly generate informative prior distributions for atmospheric transmission spectra of hot Jupiters. We demonstrate the effectiveness of $\\texttt{Exoformer}$ using both simulated observations and real JWST data of WASP-39b and WASP-17b within the TauREx retrieval framework, leveraging the nested sampling algorithm. By replacing standard uniform priors with $\\texttt{Exoformer}$-derived informative priors, our method accelerates nested-sampling retrievals by factor of 3-8 in the tested cases, while preserving the retrieved parameters and best-fit spectra. Crucially, we ensure that the retrieved parameters and the best-fit models remain consistent with results from classical methods. Furthermore, we confirm the statistical consistency of the two retrieval approaches by comparing their log-Bayesian evidence, obtaining absolute values of each Bayes factor $|Î\\log{Z}|<5$, i.e., with no strong preference following common scales for either model. This hybrid approach significantly enhances the efficiency of atmospheric retrieval tools without compromising their accuracy, paving the way for more rapid analysis of complex exoplanetary spectra and enabling the integration of more realistic atmospheric models.",
+              "event_time": "2026-04-01 05:15:26"
+            },
+            {
+              "article_id": "2603.18459",
+              "title": "HypeMed: Enhancing Medication Recommendations with Hypergraph-Based Patient Relationships",
+              "abstract": "Medication recommendations aim to generate safe and effective medication sets from health records. However, accurately recommending medications hinges on inferring a patient's latent clinical condition from sparse and noisy observations, which requires both (i) preserving the visit-level combinatorial semantics of co-occurring entities and (ii) leveraging informative historical references through effective, visit-conditioned retrieval. Most existing methods fall short in one of both aspects: graph-based modeling often fragments higher-order intra-visit patterns into pairwise relations, while inter-visit augmentation methods commonly exhibit an imbalance between learning a globally stable representation space and performing dynamic retrieval within it. To address these limitations, this paper proposes HypeMed, a two-stage hypergraph-based framework unifying intra-visit coherence modeling and inter-visit augmentation. HypeMed consists of two core modules: MedRep for representation pre-training, and SimMR for similarity-enhanced recommendation. In the first stage, MedRep encodes clinical visits as hyperedges via knowledge-aware contrastive pre-training, creating a globally consistent, retrieval-friendly embedding space. In the second stage, SimMR performs dynamic retrieval within this space, fusing retrieved references with the patient's longitudinal data to refine medication prediction. Evaluation on real-world benchmarks shows that HypeMed outperforms state-of-the-art baselines in both recommendation precision and DDI reduction, simultaneously enhancing the effectiveness and safety of clinical decision support.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.18005",
+              "title": "Negative Sampling Techniques in Information Retrieval: A Survey",
+              "abstract": "Information Retrieval (IR) is fundamental to many modern NLP applications. The rise of dense retrieval (DR), using neural networks to learn semantic vector representations, has significantly advanced IR performance. Central to training effective dense retrievers through contrastive learning is the selection of informative negative samples. Synthesizing 35 seminal papers, this survey provides a comprehensive and up-to-date overview of negative sampling techniques in dense IR. Our unique contribution is the focus on modern NLP applications and the inclusion of recent Large Language Model (LLM)-driven methods, an area absent in prior reviews. We propose a taxonomy that categorizes techniques including random, static/dynamically mined, and synthetic datasets. We then analyze these approaches with respect to trade-offs between effectiveness, computational cost, and implementation difficulty. The survey concludes by outlining current challenges and promising future directions for the use of LLM-generated synthetic data.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.16737",
+              "title": "Retrieving Counterfactuals Improves Visual In-Context Learning",
+              "abstract": "Vision-language models (VLMs) have achieved impressive performance across a wide range of multimodal reasoning tasks, but they often struggle to disentangle fine-grained visual attributes and reason about underlying causal relationships. In-context learning (ICL) offers a promising avenue for VLMs to adapt to new tasks, but its effectiveness critically depends on the selection of demonstration examples. Existing retrieval-augmented approaches typically rely on passive similarity-based retrieval, which tends to select correlated but non-causal examples, amplifying spurious associations and limiting model robustness. We introduce CIRCLES (Composed Image Retrieval for Causal Learning Example Selection), a novel framework that actively constructs demonstration sets by retrieving counterfactual-style examples through targeted, attribute-guided composed image retrieval. By incorporating counterfactual-style examples, CIRCLES enables VLMs to implicitly reason about the causal relations between attributes and outcomes, moving beyond superficial correlations and fostering more robust and grounded reasoning. Comprehensive experiments on four diverse datasets demonstrate that CIRCLES consistently outperforms existing methods across multiple architectures, especially on small-scale models, with pronounced gains under information scarcity. Furthermore, CIRCLES retrieves more diverse and causally informative examples, providing qualitative insights into how models leverage in-context demonstrations for improved reasoning. Our code is available at https://github.com/gzxiong/CIRCLES.",
+              "event_time": "2026-03-20 05:15:26"
+            },
+            {
+              "article_id": "2603.16877",
+              "title": "Enhancing Financial Report Question-Answering: A Retrieval-Augmented Generation System with Reranking Analysis",
+              "abstract": "Financial analysts face significant challenges extracting information from lengthy 10-K reports, which often exceed 100 pages. This paper presents a Retrieval-Augmented Generation (RAG) system designed to answer questions about S&P 500 financial reports and evaluates the impact of neural reranking on system performance. Our pipeline employs hybrid search combining full-text and semantic retrieval, followed by an optional reranking stage using a cross-encoder model. We conduct systematic evaluation using the FinDER benchmark dataset, comprising 1,500 queries across five experimental groups. Results demonstrate that reranking significantly improves answer quality, achieving 49.0 percent correctness for scores of 8 or above compared to 33.5 percent without reranking, representing a 15.5 percentage point improvement. Additionally, the error rate for completely incorrect answers decreases from 35.3 percent to 22.5 percent. Our findings emphasize the critical role of reranking in financial RAG systems and demonstrate performance improvements over baseline methods through modern language models and refined retrieval strategies.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.12282",
+              "title": "Algorithmic Trust and Compliance: Benchmarking Brand Notability for UK iGaming Entities in Generative Search Engines",
+              "abstract": "The rapid adoption of generative AI-powered search engines, such as ChatGPT, Perplexity, and Gemini, is fundamentally reshaping information retrieval. We are witnessing a critical shift from traditional ranked lists to synthesized, citation-backed answers. This paradigm shift challenges established Search Engine Optimization (SEO) practices and necessitates a new framework, termed Generative Engine Optimization (GEO). In highly regulated environments like the UK iGaming sector, visibility is no longer dictated by keyword density, but by an entity's ability to project \"Algorithmic Trust\". This report presents an empirical analysis of how compliance signals -- such as UK Gambling Commission (UKGC) standards -- function as authority multipliers for Large Language Models (LLMs) when properly structured. Recent large-scale experiments reveal that AI Search exhibits a systematic and overwhelming bias towards Earned media (third-party, authoritative sources) over Brand-owned content. Consequently, practitioners must engineer their content for machine scannability and justification to dominate these new AI-perceived authority metrics.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.16411",
+              "title": "RECOVER: Robust Entity Correction via agentic Orchestration of hypothesis Variants for Evidence-based Recovery",
+              "abstract": "Entity recognition in Automatic Speech Recognition (ASR) is challenging for rare and domain-specific terms. In domains such as finance, medicine, and air traffic control, these errors are costly. If the entities are entirely absent from the ASR output, post-ASR correction becomes difficult. To address this, we introduce RECOVER, an agentic correction framework that serves as a tool-using agent. It leverages multiple hypotheses as evidence from ASR, retrieves relevant entities, and applies Large Language Model (LLM) correction under constraints. The hypotheses are used using different strategies, namely, 1-Best, Entity-Aware Select, Recognizer Output Voting Error Reduction (ROVER) Ensemble, and LLM-Select. Evaluated across five diverse datasets, it achieves 8-46% relative reductions in entity-phrase word error rate (E-WER) and increases recall by up to 22 percentage points. The LLM-Select achieves the best overall performance in entity correction while maintaining overall WER.",
+              "event_time": "2026-03-19 05:15:28"
+            },
+            {
+              "article_id": "2603.07179",
+              "title": "Retrieving Minimal and Sufficient Reasoning Subgraphs with Graph Foundation Models for Path-aware GraphRAG",
+              "abstract": "Graph-based retrieval-augmented generation (GraphRAG) exploits structured knowledge to support knowledge-intensive reasoning. However, most existing methods treat graphs as intermediate artifacts, and the few subgraph-based retrieval methods depend on heuristic rules coupled with domain-specific distributions. They fail in typical cold-start scenarios where data in target domains is scarce, thus yielding reasoning contexts that are either informationally incomplete or structurally redundant. In this work, we revisit retrieval from a structural perspective, and propose GFM-Retriever that directly responds to user queries with a subgraph, where a pre-trained Graph Foundation Model acts as a cross-domain Retriever for multi-hop path-aware reasoning. Building on this perspective, we repurpose a pre-trained GFM from an entity ranking function into a generalized retriever to support cross-domain retrieval. On top of the retrieved graph, we further derive a label-free subgraph selector optimized by a principled Information Bottleneck objective to identify the query-conditioned subgraph, which contains informationally sufficient and structurally minimal golden evidence in a self-contained \"core set\". To connect structure with generation, we explicitly extract and reorganize relational paths as in-context prompts, enabling interpretable reasoning. Extensive experiments on multi-hop question answering benchmarks demonstrate that GFM-Retriever achieves state-of-the-art performance in both retrieval quality and answer generation, while maintaining efficiency.",
+              "event_time": "2026-03-10 05:15:30"
+            },
+            {
+              "article_id": "2603.06902",
+              "title": "Empowering Locally Deployable Medical Agent via State Enhanced Logical Skills for FHIR-based Clinical Tasks",
+              "abstract": "While Large Language Models demonstrate immense potential as proactive Medical Agents, their real-world deployment is severely bottlenecked by data scarcity under privacy constraints. To overcome this, we propose State-Enhanced Logical-Skill Memory (SELSM), a training-free framework that distills simulated clinical trajectories into entity-agnostic operational rules within an abstract skill space. During inference, a Query-Anchored Two-Stage Retrieval mechanism dynamically fetches these entity-agnostic logical priors to guide the agent's step-by-step reasoning, effectively resolving the state polysemy problem. Evaluated on MedAgentBench -- the only authoritative high-fidelity virtual EHR sandbox benchmarked with real clinical data -- SELSM substantially elevates the zero-shot capabilities of locally deployable foundation models (30B--32B parameters). Notably, on the Qwen3-30B-A3B backbone, our framework completely eliminates task chain breakdowns to achieve a 100\\% completion rate, boosting the overall success rate by an absolute 22.67\\% and significantly outperforming existing memory-augmented baselines. This study demonstrates that equipping models with a dynamically updatable, state-enhanced cognitive scaffold is a privacy-preserving and computationally efficient pathway for local adaptation of AI agents to clinical information systems. While currently validated on FHIR-based EHR interactions as an initial step, the entity-agnostic design of SELSM provides a principled foundation toward broader clinical deployment.",
+              "event_time": "2026-03-10 05:15:30"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

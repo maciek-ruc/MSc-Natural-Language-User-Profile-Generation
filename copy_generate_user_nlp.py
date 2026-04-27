@@ -215,22 +215,25 @@ def _has_fragment_signals(text: str) -> bool:
     return False
 
 
-def _profile_rewrite_prompt(candidate: str, evidence_text: str) -> str:
+def _profile_rewrite_prompt(candidate: str, evidence_json_text: str) -> str:
     return (
         "Revise the following first-person user-interest profile in English. "
         "Return plain text only, in exactly 4 sentences, with no headings, bullets, or markdown. "
         "Preserve only evidence-supported interests, remove redundancy, and avoid repeating the same interest with different wording. "
-        "Prefer specific research themes, methods, domains, and evaluation concerns over broad umbrella task labels. "
-        "Avoid generic labels such as 'question answering'"
         "Write a final user profile, not a summary of the data. "
+        "Interpret the JSON only as structured evidence about the user's interests. "
+        "Do not describe the JSON structure, field names, arrays, objects, counts, or empty sections. "
+        "Do not write phrases such as 'there are N articles', 'this section is empty', 'this array contains', or 'the JSON shows'. "
+        "Infer research interests only from the content values inside the JSON. "
         "Do not say phrases like 'Based on the provided text', 'the evidence shows', 'main topics', 'key topics', 'profile summary', or 'the user'. "
         "Start sentence 1 with 'I' or 'My'. If the candidate is meta-commentary, discard its phrasing and rewrite from the evidence only.\n\n"
-        f"Evidence:\n{evidence_text}\n\n"
+        "Evidence JSON:\n"
+        f"{evidence_json_text}\n\n"
         f"profile_text = {json.dumps(candidate, ensure_ascii=False)}"
     )
 
 
-def _maybe_rewrite_profile(client: LLMClient, profile_text: str, evidence_text: str) -> tuple[str, dict[str, Any]]:
+def _maybe_rewrite_profile(client: LLMClient, profile_text: str, evidence_json_text: str) -> tuple[str, dict[str, Any]]:
     finalized = _sanitize_profile_text(profile_text)
     original_passes = _passes_quality_gate(finalized)
     rewrite_meta = {
@@ -246,7 +249,7 @@ def _maybe_rewrite_profile(client: LLMClient, profile_text: str, evidence_text: 
 
     rewrite_meta["rewrite_attempted"] = True
     rewritten_raw = client.generate(
-        _profile_rewrite_prompt(finalized, evidence_text),
+        _profile_rewrite_prompt(finalized, evidence_json_text),
         "You revise user-interest profiles into concise first-person plain text. Return plain text only.",
     )
     rewritten = _sanitize_profile_text(rewritten_raw)
@@ -629,11 +632,8 @@ def _build_hybrid_prompt(
 ) -> str:
     publications_for_prompt = publications[:MAX_PROMPT_PUBLICATIONS]
     priority = _resolve_prompt_priority(source_priority_instruction)
-    evidence_text = _build_textual_evidence_block(
-        publications_for_prompt,
-        summary,
-        source_priority_instruction=source_priority_instruction,
-    )
+    evidence_json = _build_evidence_json(publications_for_prompt, summary)
+    evidence_json_text = json.dumps(evidence_json, ensure_ascii=False, indent=2)
 
     objective_line = "Blend publication history and interaction behavior into one coherent profile."
     sentence_plan = "Sentence plan: cover the strongest recurring interests across both evidence sources."
@@ -653,17 +653,20 @@ def _build_hybrid_prompt(
         "Style example:",
         ONE_SHOT_EXAMPLE,
         "Do not copy phrases from the style example; infer specific topics from the evidence.",
+        "Interpret the JSON only as structured evidence about the user's interests and activities.",
+        "Use only the content values inside the JSON to infer themes, methods, tasks, and domains.",
+        "Do not describe the JSON structure, keys, arrays, objects, counts, nulls, or empty sections.",
+        "Never write phrases such as 'there are N articles', 'this section is empty', 'this array contains', 'the JSON shows', 'interaction categories', or 'interaction topics'.",
         objective_line,
         sentence_plan,
-        "Prefer precise, evidence-grounded research themes, methods, domains, and evaluation concerns over broad task labels.",
-        "Avoid generic umbrella phrases such as 'question answering', 'deep learning', 'artificial intelligence', or 'machine learning' unless they are clearly central and repeatedly supported by the evidence.",
         "Avoid redundancy: do not repeat the same interest multiple times with different wording.",
         "Do not mention uncertainty, missing data, or AI status.",
         "Do not reference the prompt, data format, or model limitations.",
         "Do not write phrases such as 'Based on the provided text', 'the provided data', 'main topics', 'key topics', 'themes', 'profile summary', or 'evidence from interactions/publications'.",
         "Do not use headings, bullets, numbered lists, labels, or section names.",
-        "Use only the evidence below.",
-        evidence_text,
+        "Use only the JSON evidence below.",
+        "Evidence JSON:",
+        evidence_json_text,
     ]
 
     if source_priority_instruction:
@@ -698,13 +701,9 @@ def _generate_profile_from_hybrid_evidence(
         source_priority_instruction=source_priority_instruction,
     )
     evidence_json = _build_evidence_json(publications[:MAX_PROMPT_PUBLICATIONS], summary)
-    evidence_text = _build_textual_evidence_block(
-        publications[:MAX_PROMPT_PUBLICATIONS],
-        summary,
-        source_priority_instruction=source_priority_instruction,
-    )
+    evidence_json_text = json.dumps(evidence_json, ensure_ascii=False, indent=2)
     generated_profile = client.generate(prompt, DEFAULT_SYSTEM_PROMPT)
-    profile_text, rewrite_meta = _maybe_rewrite_profile(client, generated_profile, evidence_text)
+    profile_text, rewrite_meta = _maybe_rewrite_profile(client, generated_profile, evidence_json_text)
     if enforce_quality_gate and not _passes_quality_gate(profile_text):
         raise ValueError("profile_failed_quality_gate")
 
