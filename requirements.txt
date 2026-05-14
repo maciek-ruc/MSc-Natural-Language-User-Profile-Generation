@@ -1,0 +1,5 @@
+mysql-connector-python
+requests
+python-dotenvmysql-connector-python
+requests
+python-dotenv
